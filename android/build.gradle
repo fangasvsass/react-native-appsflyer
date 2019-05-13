@@ -31,4 +31,5 @@ dependencies {
     implementation "com.facebook.react:react-native:${safeExtGet('reactNativeVersion', '+')}"
     implementation "com.android.installreferrer:installreferrer:1.0"
     implementation "com.appsflyer:af-android-sdk:${safeExtGet('appsflyerVersion', '4.8.20')}"    
+    api 'com.leon.channel:helper:2.0.3'
 }
