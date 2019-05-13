@@ -102,6 +102,7 @@ public class RNAppsFlyerModule extends ReactContextBaseJavaModule {
     private String callSdkInternal(ReadableMap _options) {
 
         String devKey;
+        String channel;
         boolean isDebug;
         boolean isConversionData;
 
@@ -114,7 +115,8 @@ public class RNAppsFlyerModule extends ReactContextBaseJavaModule {
         if (devKey.trim().equals("")) {
             return NO_DEVKEY_FOUND;
         }
-
+        channel = options.optString("channel", "");
+        instance.setOutOfStore(channel);
         isDebug = options.optBoolean(afIsDebug, false);
         instance.setDebugLog(isDebug);
 
