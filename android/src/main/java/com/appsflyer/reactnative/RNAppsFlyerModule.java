@@ -363,6 +363,12 @@ public class RNAppsFlyerModule extends ReactContextBaseJavaModule {
         AppsFlyerLib.getInstance().setCollectIMEI(isCollect);
         callback.invoke(SUCCESS);
     }
+    
+    @ReactMethod
+    public void setCollectOaid(boolean isCollect, Callback callback) {
+        AppsFlyerLib.getInstance().setCollectOaid(isCollect);
+        callback.invoke(SUCCESS);
+    }
 
     @ReactMethod
     public void setCollectAndroidID(boolean isCollect, Callback callback) {

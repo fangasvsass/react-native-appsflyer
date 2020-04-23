@@ -1,6 +1,6 @@
 {
-  "name": "react-native-appsflyer",
-  "version": "5.2.0",
+  "name": "react-native-letote-appsflyer",
+  "version": "5.4.0",
   "description": "React Native Appsflyer plugin",
   "main": "index.js",
   "scripts": {

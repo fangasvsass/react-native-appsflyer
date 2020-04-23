@@ -1,10 +1,9 @@
 import { NativeEventEmitter, NativeModules } from "react-native";
 
-const { RNAppsFlyer }        = NativeModules;
-const appsFlyer              = {};
-const eventsMap              = {};
-const appsFlyerEventEmitter  = new NativeEventEmitter(RNAppsFlyer);
-
+const { RNAppsFlyer } = NativeModules;
+const appsFlyer = {};
+const eventsMap = {};
+const appsFlyerEventEmitter = new NativeEventEmitter(RNAppsFlyer);
 
 function initSdkCallback(options, successC, errorC) {
   return RNAppsFlyer.initSdk(options, successC, errorC);
@@ -162,6 +161,10 @@ appsFlyer.setCollectIMEI = (isCollect, successC) => {
   return RNAppsFlyer.setCollectIMEI(isCollect, successC);
 };
 
+appsFlyer.setCollectOaid = (isCollect, successC) => {
+  return RNAppsFlyer.setCollectOaid(isCollect, successC);
+};
+
 /**
  * Opt-out of collection of Android ID.
  * If the app does NOT contain Google Play Services, Android ID is collected by the SDK.
@@ -231,8 +234,6 @@ appsFlyer.setCurrencyCode = (currencyCode, successC) => {
   return RNAppsFlyer.setCurrencyCode(currencyCode, successC);
 };
 
-
-
 /**
  * Accessing AppsFlyer Attribution / Conversion Data from the SDK (Deferred Deeplinking)
  * @param callback: contains fields:
@@ -266,7 +267,7 @@ appsFlyer.onInstallConversionData = callback => {
     }
   );
 
-   eventsMap["onInstallConversionData"] = listener;
+  eventsMap["onInstallConversionData"] = listener;
 
   // unregister listener (suppose should be called from componentWillUnmount() )
   return function remove() {
@@ -275,7 +276,6 @@ appsFlyer.onInstallConversionData = callback => {
 };
 
 appsFlyer.onAppOpenAttribution = callback => {
-
   //console.log("onAppOpenAttribution is called" );
 
   const listener = appsFlyerEventEmitter.addListener(
@@ -292,7 +292,6 @@ appsFlyer.onAppOpenAttribution = callback => {
     }
   );
 
-
   eventsMap["onAppOpenAttribution"] = listener;
 
   // unregister listener (suppose should be called from componentWillUnmount() )
@@ -305,11 +304,14 @@ appsFlyer.onAppOpenAttribution = callback => {
  * Anonymize user Data.
  * Use this API during the SDK Initialization to explicitly anonymize a user's installs, events and sessions.
  * Default is false
- * @param isDeviceTrackingDisabled boolean 
+ * @param isDeviceTrackingDisabled boolean
  * @param successC success callback function.
  */
 appsFlyer.setDeviceTrackingDisabled = (isDeviceTrackingDisabled, successC) => {
-  return RNAppsFlyer.setDeviceTrackingDisabled(isDeviceTrackingDisabled, successC);
+  return RNAppsFlyer.setDeviceTrackingDisabled(
+    isDeviceTrackingDisabled,
+    successC
+  );
 };
 
 function AFParseJSONException(_message, _data) {
@@ -317,6 +319,5 @@ function AFParseJSONException(_message, _data) {
   this.data = _data;
   this.name = "AFParseJSONException";
 }
-
 
 export default appsFlyer;
