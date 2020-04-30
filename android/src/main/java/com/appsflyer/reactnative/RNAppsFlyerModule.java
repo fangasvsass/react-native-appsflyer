@@ -116,7 +116,8 @@ public class RNAppsFlyerModule extends ReactContextBaseJavaModule {
         if (devKey.trim().equals("")) {
             return NO_DEVKEY_FOUND;
         }
-
+        String channel = ChannelReaderUtil.getChannel(getReactApplicationContext());
+        instance.setOutOfStore(channel);
         isDebug = options.optBoolean(afIsDebug, false);
         instance.setDebugLog(isDebug);
 
